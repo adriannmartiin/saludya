@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Calorías Diarias (TDEE) | SaludYa</title>
+  <meta name="description" content="Calcula tu gasto calórico diario (TDEE) gratis. Fórmula Mifflin-St Jeor. Resultado personalizado según peso, altura, edad y nivel de actividad.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://saludya.org/calc-calorias">
+  <meta property="og:title" content="Calculadora de Calorías Diarias (TDEE) | SaludYa"><meta property="og:type" content="website">
+  <meta property="og:image" content="https://saludya.org/og-image.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="style.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header><div class="header-inner">
+  <a href="/" class="logo">Salud<span class="logo-dot">Ya</span>.</a>
+  <nav id="main-nav">
+      <a href="/calc-imc.html">⚖️ IMC</a>
+      <a href="/calc-calorias.html" class="active">🔥 Calorías</a>
+      <a href="/calc-peso-ideal.html">🎯 Peso ideal</a>
+      <a href="/calc-grasa-corporal.html">📊 Grasa</a>
+      <a href="/calc-frecuencia-cardiaca.html">❤️ FC</a>
+      <a href="/calc-macros.html">🥗 Macros</a>
+      <a href="/calc-1rm.html">🏋️ 1RM</a>
+      <a href="/calc-agua.html">💧 Agua</a>
+      <a href="/calc-actividad.html">🏃 Actividad</a>
+      <a href="/calc-deficit.html">📉 Déficit</a>
+      <a href="/calc-cintura-cadera.html">📐 Cintura</a>
+      <a href="/calc-sueno.html">😴 Sueño</a>
+    </nav>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</div></header>
+<main class="page-wrap">
+  <section class="page-hero">
+    <div class="breadcrumb"><a href="/">Inicio</a><span>›</span>Calorías Diarias (TDEE)</div>
+    <div class="tool-badge">🔥 Calorías Diarias (TDEE)</div>
+    <h1 class="tool-title">Calculadora de <em>Calorías Diarias</em></h1>
+    <p class="tool-subtitle">Calcula tu gasto calórico total diario (TDEE) con la fórmula Mifflin-St Jeor, la más precisa disponible según la ciencia actual.</p>
+  </section>
+  <div class="ad-slot"><!-- AdSense --></div>
+  <div class="calc-card">
+    
+<div class="form-row single" style="margin-bottom:16px">
+  <div class="form-group"><label>Sexo biológico</label>
+    <div class="gender-toggle">
+      <button class="gender-btn active" id="btn-h" onclick="setSexo('h')">♂ Hombre</button>
+      <button class="gender-btn" id="btn-m" onclick="setSexo('m')">♀ Mujer</button>
+    </div>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group"><label>Peso</label><div class="input-unit"><input type="number" id="peso" placeholder="70" min="30" max="250"><span class="unit-label">kg</span></div></div>
+  <div class="form-group"><label>Altura</label><div class="input-unit"><input type="number" id="altura" placeholder="175" min="100" max="250"><span class="unit-label">cm</span></div></div>
+</div>
+<div class="form-row">
+  <div class="form-group"><label>Edad</label><div class="input-unit"><input type="number" id="edad" placeholder="30" min="15" max="100"><span class="unit-label">años</span></div></div>
+  <div class="form-group"><label>Nivel de actividad</label>
+    <select id="actividad">
+      <option value="1.2">Sedentario (sin ejercicio)</option>
+      <option value="1.375">Ligero (1-3 días/semana)</option>
+      <option value="1.55" selected>Moderado (3-5 días/semana)</option>
+      <option value="1.725">Activo (6-7 días/semana)</option>
+      <option value="1.9">Muy activo (trabajo físico + ejercicio)</option>
+    </select>
+  </div>
+</div>
+    <div class="calc-error" id="calc-error">Por favor, rellena todos los campos con valores válidos.</div>
+    <button class="calc-btn" onclick="calcular()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Calcular
+    </button>
+    <div class="result-section" id="result-section" style="display:none">
+      <div class="result-card" id="result-card">
+        <div class="result-badge" id="result-badge"></div>
+        <div class="result-value" id="result-value"></div>
+        <div class="result-label" id="result-label"></div>
+        <p class="result-text" id="result-text"></p>
+      </div>
+      <div class="metric-grid" id="metric-grid"></div>
+      <div class="share-result">
+        <button class="btn-share copy" onclick="copiarResultado()">📋 Copiar resultado</button>
+      </div>
+    </div>
+    <p class="disclaimer">⚕️ Resultado orientativo. Consulta con tu médico o profesional de la salud para una valoración personalizada.</p>
+  </div>
+  <div class="ad-slot"><!-- AdSense --></div>
+  <section class="guide-section"><h2>¿Qué es el TDEE y cómo se calcula?</h2>
+<p>El TDEE (Total Daily Energy Expenditure) es el total de calorías que tu cuerpo quema en un día, incluyendo el metabolismo basal y la actividad física. Es el número más importante para controlar el peso.</p>
+<h3>Fórmula Mifflin-St Jeor (1990)</h3>
+<div class="formula-box">Hombre: BMR = (10 × kg) + (6.25 × cm) − (5 × edad) + 5<br>Mujer: BMR = (10 × kg) + (6.25 × cm) − (5 × edad) − 161<br>TDEE = BMR × Factor de actividad</div>
+<h3>Factores de actividad</h3>
+<p>Sedentario (×1.2): trabajo de oficina, sin ejercicio. Ligero (×1.375): ejercicio 1-3 días/semana. Moderado (×1.55): ejercicio 3-5 días. Activo (×1.725): ejercicio intenso 6-7 días. Muy activo (×1.9): trabajo físico duro + ejercicio doble.</p></section>
+  <section class="faq-section"><h2>Preguntas frecuentes</h2>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">¿Cuántas calorías debo comer para adelgazar?<svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Resta entre 300 y 500 kcal de tu TDEE. Un déficit de 500 kcal/día produce aproximadamente 0.5 kg de pérdida de grasa por semana, que es un ritmo saludable y sostenible. No bajes de 1200 kcal/día si eres mujer o 1500 si eres hombre sin supervisión médica.</p></div></div>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">¿Por qué el TDEE cambia si pierdo peso?<svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Porque el BMR depende de tu peso actual. Al perder peso, tu metabolismo basal disminuye, lo que significa que necesitas recalcular tu TDEE cada 4-6 semanas durante un proceso de pérdida de peso para mantener la precisión.</p></div></div>
+</section>
+  <section class="related-section"><h2>Calculadoras relacionadas</h2><div class="tools-grid">
+<a href="/calc-imc.html" class="tool-card"><span class="tc-emoji">⚖️</span><div class="tc-name">IMC</div><div class="tc-desc">Tu índice de masa corporal.</div></a>
+<a href="/calc-macros.html" class="tool-card"><span class="tc-emoji">🥗</span><div class="tc-name">Macros</div><div class="tc-desc">Proteínas, carbos y grasas.</div></a>
+<a href="/calc-deficit.html" class="tool-card"><span class="tc-emoji">📉</span><div class="tc-name">Déficit calórico</div><div class="tc-desc">Tiempo para tu objetivo.</div></a>
+</div></section>
+  <div class="ad-slot"><!-- AdSense --></div>
+</main>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div><div class="footer-logo">SaludYa.</div><p class="footer-desc">Calculadoras de salud gratuitas para hispanohablantes.</p></div>
+      <div class="footer-col"><h4>Calculadoras</h4>
+        <a href="/calc-imc.html">⚖️ IMC</a><a href="/calc-calorias.html">🔥 Calorías</a>
+        <a href="/calc-peso-ideal.html">🎯 Peso ideal</a><a href="/calc-grasa-corporal.html">📊 Grasa</a>
+        <a href="/calc-frecuencia-cardiaca.html">❤️ FC</a><a href="/calc-macros.html">🥗 Macros</a>
+      </div>
+      <div class="footer-col"><h4>Legal</h4>
+        <a href="/privacidad.html">Privacidad</a><a href="/aviso-legal.html">Aviso legal</a>
+        <a href="/cookies.html">Cookies</a><a href="/sobre.html">Sobre SaludYa</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© SaludYa. Resultados orientativos, no sustituyen consejo médico.</span></div>
+  </div>
+</footer>
+<div class="toast" id="toast">¡Copiado!</div>
+<script>
+
+function showToast(m='¡Copiado!'){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+function toggleFaq(btn){const e=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',!e);btn.nextElementSibling.classList.toggle('open');}
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('main-nav').classList.toggle('open'));
+document.addEventListener('keydown',e=>{if(e.key==='Enter')calcular();});
+
+
+let sexo='h';
+function setSexo(s){sexo=s;document.getElementById('btn-h').classList.toggle('active',s==='h');document.getElementById('btn-m').classList.toggle('active',s==='m');}
+function calcular(){
+  const peso=parseFloat(document.getElementById('peso').value);
+  const altura=parseFloat(document.getElementById('altura').value);
+  const edad=parseFloat(document.getElementById('edad').value);
+  const act=parseFloat(document.getElementById('actividad').value);
+  if(isNaN(peso)||isNaN(altura)||isNaN(edad)){document.getElementById('calc-error').classList.add('show');return;}
+  document.getElementById('calc-error').classList.remove('show');
+  // Mifflin-St Jeor
+  const bmr = sexo==='h' ? 10*peso + 6.25*altura - 5*edad + 5 : 10*peso + 6.25*altura - 5*edad - 161;
+  const tdee = Math.round(bmr * act);
+  const bmrR = Math.round(bmr);
+  const card=document.getElementById('result-card');
+  card.className='result-card normal';
+  document.getElementById('result-badge').className='result-badge normal';
+  document.getElementById('result-badge').textContent='🔥 Tu gasto calórico diario';
+  document.getElementById('result-value').textContent=tdee;
+  document.getElementById('result-label').textContent='kcal/día (TDEE)';
+  document.getElementById('result-text').textContent=`Necesitas aproximadamente ${tdee} kcal/día para mantener tu peso actual. Tu metabolismo basal (BMR) es ${bmrR} kcal, que es lo que tu cuerpo quema en reposo absoluto.`;
+  document.getElementById('metric-grid').innerHTML=`
+    <div class="metric-item"><div class="mi-label">BMR (reposo)</div><div class="mi-value">${bmrR}</div><div class="mi-unit">kcal/día</div></div>
+    <div class="metric-item"><div class="mi-label">TDEE (total)</div><div class="mi-value">${tdee}</div><div class="mi-unit">kcal/día</div></div>
+    <div class="metric-item"><div class="mi-label">Déficit (−500)</div><div class="mi-value">${tdee-500}</div><div class="mi-unit">kcal/día para bajar</div></div>
+    <div class="metric-item"><div class="mi-label">Superávit (+300)</div><div class="mi-value">${tdee+300}</div><div class="mi-unit">kcal/día para ganar</div></div>
+  `;
+  document.getElementById('result-section').style.display='block';
+  document.getElementById('result-section').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function copiarResultado(){const v=document.getElementById('result-value').textContent;navigator.clipboard.writeText(`Mi TDEE es ${v} kcal/día. Calculado en saludya.org`).then(()=>showToast());}
+
+</script>
+<script src="/cookie-banner.js"></script>
+</body></html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Sueño — Cuántas Horas Dormir y Cuándo Despertar | SaludYa</title><meta name="description" content="Calcula cuántas horas dormir y a qué hora despertar para sentirte descansado. Basado en ciclos de sueño de 90 minutos. Gratis.">
+  <meta name="robots" content="index, follow"><link rel="canonical" href="https://saludya.org/calc-sueno">
+  <meta property="og:title" content="Calculadora de Sueño — Cuántas Horas Dormir y Cuándo Despertar"><meta property="og:type" content="website">
+  <meta property="og:image" content="https://saludya.org/og-image.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="style.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header><div class="header-inner">
+  <a href="/" class="logo">Salud<span class="logo-dot">Ya</span>.</a>
+  <nav id="main-nav">
+      <a href="/calc-imc.html">⚖️ IMC</a><a href="/calc-calorias.html">🔥 Calorías</a>
+      <a href="/calc-peso-ideal.html">🎯 Peso ideal</a><a href="/calc-grasa-corporal.html">📊 Grasa</a>
+      <a href="/calc-frecuencia-cardiaca.html">❤️ FC</a><a href="/calc-macros.html">🥗 Macros</a>
+      <a href="/calc-1rm.html">🏋️ 1RM</a><a href="/calc-agua.html">💧 Agua</a>
+      <a href="/calc-actividad.html">🏃 Actividad</a><a href="/calc-deficit.html">📉 Déficit</a>
+      <a href="/calc-cintura-cadera.html">📐 Cintura</a><a href="/calc-sueno.html" class="active">😴 Sueño</a>
+    </nav>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</div></header>
+<main class="page-wrap">
+  <section class="page-hero">
+    <div class="breadcrumb"><a href="/">Inicio</a><span>›</span>Calculadora de Sueño</div>
+    <div class="tool-badge">😴 Calculadora de Sueño</div>
+    <h1 class="tool-title">Calculadora de <em>Sueño</em></h1>
+    <p class="tool-subtitle">Descubre las mejores horas para despertar según tu hora de acostarte, basándote en los ciclos de sueño de 90 minutos para levantarte descansado.</p>
+  </section>
+  <div class="ad-slot"><!-- AdSense --></div>
+  <div class="calc-card">
+    
+<div class="form-row">
+  <div class="form-group"><label>Hora a la que quieres dormirte</label>
+    <input type="time" id="hora_dormir" value="23:00" style="height:48px;padding:0 12px;border:1px solid var(--border-strong);border-radius:8px;font-size:16px;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);width:100%">
+  </div>
+  <div class="form-group"><label>Edad</label><div class="input-unit"><input type="number" id="edad" placeholder="30" min="15" max="90"><span class="unit-label">años</span></div></div>
+</div>
+    <div class="calc-error" id="calc-error">Por favor, rellena todos los campos correctamente.</div>
+    <button class="calc-btn" onclick="calcular()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Calcular</button>
+    <div class="result-section" id="result-section" style="display:none">
+      <div class="result-card" id="result-card">
+        <div class="result-badge" id="result-badge"></div>
+        <div class="result-value" id="result-value"></div>
+        <div class="result-label" id="result-label"></div>
+        <p class="result-text" id="result-text"></p>
+      </div>
+      <div class="metric-grid" id="metric-grid"></div>
+      <div class="share-result"><button class="btn-share copy" onclick="copiarResultado()">📋 Copiar resultado</button></div>
+    </div>
+    <p class="disclaimer">⚕️ Resultado orientativo. Consulta con tu médico o profesional de la salud.</p>
+  </div>
+  <div class="ad-slot"><!-- AdSense --></div>
+  <section class="guide-section"><h2>¿Cómo funcionan los ciclos de sueño?</h2>
+<p>El sueño no es uniforme: se organiza en ciclos de aproximadamente <strong>90 minutos</strong> que incluyen fases de sueño ligero, sueño profundo (NREM) y sueño REM. Despertar al final de un ciclo (en la fase de sueño ligero) te hará sentir mucho más descansado que despertar a mitad de un ciclo de sueño profundo.</p>
+<h3>Horas recomendadas por edad</h3>
+<p>La NSF (National Sleep Foundation) recomienda: adolescentes (14-17 años) 8-10h, adultos jóvenes (18-25) 7-9h, adultos (26-64) 7-9h, mayores de 65 años 7-8h.</p></section>
+  <section class="faq-section"><h2>Preguntas frecuentes</h2>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">¿Por qué a veces me despierto con el despertador sintiéndome peor?<svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Probablemente te despertaste en medio de sueño profundo o REM. La "inercia del sueño" (esa sensación de atontamiento) es mucho mayor cuando se interrumpe el sueño profundo. Usa esta calculadora para ajustar tu hora de despertar al final de un ciclo.</p></div></div>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">¿Sirven las siestas?<svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Sí. Una siesta de 20-30 minutos (siesta corta o "power nap") mejora la atención y el estado de ánimo sin causar inercia del sueño. Una siesta de 90 minutos completa un ciclo y puede restaurar energía significativamente, pero puede interferir con el sueño nocturno si se hace demasiado tarde.</p></div></div>
+</section>
+  <section class="related-section"><h2>Calculadoras relacionadas</h2><div class="tools-grid">
+<a href="/calc-actividad.html" class="tool-card"><span class="tc-emoji">🏃</span><div class="tc-name">Actividad</div><div class="tc-desc">El ejercicio mejora el sueño.</div></a>
+<a href="/calc-agua.html" class="tool-card"><span class="tc-emoji">💧</span><div class="tc-name">Agua</div><div class="tc-desc">Hidratación y salud.</div></a>
+</div></section>
+  <div class="ad-slot"><!-- AdSense --></div>
+</main>
+<footer><div class="footer-inner"><div class="footer-grid">
+  <div><div class="footer-logo">SaludYa.</div><p class="footer-desc">Calculadoras de salud gratuitas para hispanohablantes.</p></div>
+  <div class="footer-col"><h4>Calculadoras</h4><a href="/calc-imc.html">⚖️ IMC</a><a href="/calc-calorias.html">🔥 Calorías</a><a href="/calc-macros.html">🥗 Macros</a></div>
+  <div class="footer-col"><h4>Legal</h4><a href="/privacidad.html">Privacidad</a><a href="/aviso-legal.html">Aviso legal</a><a href="/cookies.html">Cookies</a></div>
+</div><div class="footer-bottom"><span>© SaludYa. Resultados orientativos.</span></div></div></footer>
+<div class="toast" id="toast">¡Copiado!</div>
+<script>
+function showToast(m='¡Copiado!'){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+function toggleFaq(btn){const e=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',!e);btn.nextElementSibling.classList.toggle('open');}
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('main-nav').classList.toggle('open'));
+document.addEventListener('keydown',e=>{if(e.key==='Enter')calcular();});
+
+function calcular(){
+  const hora=document.getElementById('hora_dormir').value;
+  const edad=parseFloat(document.getElementById('edad').value);
+  if(!hora||isNaN(edad)){document.getElementById('calc-error').classList.add('show');return;}
+  document.getElementById('calc-error').classList.remove('show');
+  const [h,m]=hora.split(':').map(Number);
+  const dormirMins=h*60+m+15; // +15 min para conciliar el sueño
+  const ciclo=90;
+  const despertar=[];
+  for(let i=4;i<=7;i++){
+    const wMins=(dormirMins+i*ciclo)%1440;
+    const wH=Math.floor(wMins/60).toString().padStart(2,'0');
+    const wM=(wMins%60).toString().padStart(2,'0');
+    const horas=i*ciclo/60;
+    const etiqueta=i<=5?'😟 Mínimo':i===6?'✅ Recomendado':'😴 Ideal';
+    despertar.push({time:`${wH}:${wM}`,ciclos:i,horas,etiqueta});
+  }
+  const horasRec=edad<18?9:edad<65?8:7;
+  document.getElementById('result-card').className='result-card normal';
+  document.getElementById('result-badge').className='result-badge normal';
+  document.getElementById('result-badge').textContent='😴 Tus mejores horas para despertar';
+  document.getElementById('result-value').textContent=horasRec+'h';
+  document.getElementById('result-label').textContent='de sueño recomendadas para tu edad';
+  document.getElementById('result-text').textContent=`Si te duermes a las ${hora}, estos son los mejores horarios para despertar (completando ciclos de 90 min de sueño + 15 min para conciliar el sueño):`;
+  document.getElementById('metric-grid').innerHTML=despertar.map(d=>`
+    <div class="metric-item">
+      <div class="mi-label">${d.etiqueta}</div>
+      <div class="mi-value" style="font-size:22px">${d.time}</div>
+      <div class="mi-unit">${d.ciclos} ciclos · ${d.horas}h</div>
+    </div>`).join('');
+  document.getElementById('result-section').style.display='block';
+  document.getElementById('result-section').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function copiarResultado(){const v=document.getElementById('result-value').textContent;navigator.clipboard.writeText(`Necesito ${v} de sueño. Calculado en saludya.org`).then(()=>showToast());}
+</script>
+<script src="/cookie-banner.js"></script>
+</body></html>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#F0FDF4"/>
+  <rect x="60" y="60" width="1080" height="510" rx="20" fill="white"/>
+  <text x="600" y="270" text-anchor="middle" font-family="Georgia,serif" font-size="72" font-style="italic" fill="#0F172A">SaludYa</text>
+  <text x="600" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" fill="#475569">Tu salud, en números</text>
+  <circle cx="600" cy="450" r="8" fill="#10B981"/>
+</svg>

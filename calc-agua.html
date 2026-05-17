@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Agua Diaria Recomendada | SaludYa</title>
+  <meta name="description" content="Calcula cuánta agua debes beber al día gratis. Personalizado según peso, actividad y clima. En litros y vasos.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://saludya.org/calc-agua">
+  <meta property="og:title" content="Calculadora de Agua Diaria Recomendada"><meta property="og:type" content="website">
+  <meta property="og:image" content="https://saludya.org/og-image.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="style.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header><div class="header-inner">
+  <a href="/" class="logo">Salud<span class="logo-dot">Ya</span>.</a>
+  <nav id="main-nav">
+      <a href="/calc-imc.html">⚖️ IMC</a><a href="/calc-calorias.html">🔥 Calorías</a>
+      <a href="/calc-peso-ideal.html">🎯 Peso ideal</a><a href="/calc-grasa-corporal.html">📊 Grasa</a>
+      <a href="/calc-frecuencia-cardiaca.html">❤️ FC</a><a href="/calc-macros.html">🥗 Macros</a>
+      <a href="/calc-1rm.html">🏋️ 1RM</a><a href="/calc-agua.html" class="active">💧 Agua</a>
+      <a href="/calc-actividad.html">🏃 Actividad</a><a href="/calc-deficit.html">📉 Déficit</a>
+      <a href="/calc-cintura-cadera.html">📐 Cintura</a><a href="/calc-sueno.html">😴 Sueño</a>
+    </nav>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</div></header>
+<main class="page-wrap">
+  <section class="page-hero">
+    <div class="breadcrumb"><a href="/">Inicio</a><span>›</span>Agua Diaria</div>
+    <div class="tool-badge">💧 Agua Diaria</div>
+    <h1 class="tool-title">Calculadora de <em>Agua Diaria</em></h1>
+    <p class="tool-subtitle">Descubre cuántos litros de agua necesitas cada día según tu peso, nivel de actividad y el clima. Resultado en litros y número de vasos.</p>
+  </section>
+  <div class="ad-slot"><!-- AdSense --></div>
+  <div class="calc-card">
+    
+<div class="form-row">
+  <div class="form-group"><label>Peso corporal</label><div class="input-unit"><input type="number" id="peso" placeholder="70" min="30" max="250"><span class="unit-label">kg</span></div></div>
+  <div class="form-group"><label>Nivel de actividad</label>
+    <select id="act">
+      <option value="0">Sedentario (sin ejercicio)</option>
+      <option value="0.35" selected>Moderadamente activo</option>
+      <option value="0.6">Muy activo / deportista</option>
+    </select>
+  </div>
+</div>
+<div class="form-row single">
+  <div class="form-group"><label>Clima</label>
+    <select id="clima">
+      <option value="0">Frío o templado</option>
+      <option value="0.2" selected>Cálido (verano español)</option>
+      <option value="0.4">Muy caluroso / tropical</option>
+    </select>
+  </div>
+</div>
+    <div class="calc-error" id="calc-error">Por favor, rellena todos los campos con valores válidos.</div>
+    <button class="calc-btn" onclick="calcular()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Calcular</button>
+    <div class="result-section" id="result-section" style="display:none">
+      <div class="result-card" id="result-card">
+        <div class="result-badge" id="result-badge"></div>
+        <div class="result-value" id="result-value"></div>
+        <div class="result-label" id="result-label"></div>
+        <p class="result-text" id="result-text"></p>
+      </div>
+      <div class="metric-grid" id="metric-grid"></div>
+      <div class="share-result"><button class="btn-share copy" onclick="copiarResultado()">📋 Copiar resultado</button></div>
+    </div>
+    <p class="disclaimer">⚕️ Resultado orientativo. Consulta con tu médico o profesional de la salud para una valoración personalizada.</p>
+  </div>
+  <div class="ad-slot"><!-- AdSense --></div>
+  <section class="guide-section"><h2>¿Cuánta agua debo beber al día?</h2>
+<p>La recomendación general de la OMS es beber aproximadamente 35 ml de agua por kg de peso corporal al día, aunque esto varía según la actividad física y el clima. El mito de "8 vasos al día" (2 litros) viene de una recomendación de 1945 que no consideraba el agua contenida en los alimentos.</p>
+<h3>Señales de buena hidratación</h3>
+<p>La forma más sencilla de controlar la hidratación es el color de la orina: amarillo pálido indica buena hidratación. Amarillo oscuro o marrón indica deshidratación. La orina incolora puede indicar sobrehidratación (rara pero posible).</p></section>
+  <section class="faq-section"><h2>Preguntas frecuentes</h2>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">¿El café y el té cuentan para la hidratación?<svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Sí, parcialmente. Aunque la cafeína tiene un leve efecto diurético, el agua que contienen las bebidas con cafeína compensa ese efecto. La EFSA (Autoridad Europea de Seguridad Alimentaria) indica que el café y el té contribuyen a la hidratación general, aunque no son tan eficaces como el agua pura.</p></div></div>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">¿Cuánta agua extra necesito si hago ejercicio?<svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Aproximadamente 500-750 ml por cada hora de ejercicio moderado, y hasta 1 litro/hora en ejercicio intenso o en calor. Una forma práctica: pésate antes y después del ejercicio — cada kg perdido equivale a 1 litro de líquido que debes reponer.</p></div></div>
+</section>
+  <section class="related-section"><h2>Calculadoras relacionadas</h2><div class="tools-grid">
+<a href="/calc-actividad.html" class="tool-card"><span class="tc-emoji">🏃</span><div class="tc-name">Actividad</div><div class="tc-desc">Calorías quemadas.</div></a>
+<a href="/calc-calorias.html" class="tool-card"><span class="tc-emoji">🔥</span><div class="tc-name">Calorías</div><div class="tc-desc">Tu gasto calórico total.</div></a>
+</div></section>
+  <div class="ad-slot"><!-- AdSense --></div>
+</main>
+<footer><div class="footer-inner">
+  <div class="footer-grid">
+    <div><div class="footer-logo">SaludYa.</div><p class="footer-desc">Calculadoras de salud gratuitas para hispanohablantes.</p></div>
+    <div class="footer-col"><h4>Calculadoras</h4>
+      <a href="/calc-imc.html">⚖️ IMC</a><a href="/calc-calorias.html">🔥 Calorías</a>
+      <a href="/calc-macros.html">🥗 Macros</a><a href="/calc-deficit.html">📉 Déficit</a>
+    </div>
+    <div class="footer-col"><h4>Legal</h4>
+      <a href="/privacidad.html">Privacidad</a><a href="/aviso-legal.html">Aviso legal</a><a href="/cookies.html">Cookies</a>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© SaludYa. Resultados orientativos, no sustituyen consejo médico.</span></div>
+</div></footer>
+<div class="toast" id="toast">¡Copiado!</div>
+<script>
+function showToast(m='¡Copiado!'){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+function toggleFaq(btn){const e=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',!e);btn.nextElementSibling.classList.toggle('open');}
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('main-nav').classList.toggle('open'));
+document.addEventListener('keydown',e=>{if(e.key==='Enter')calcular();});
+
+function calcular(){
+  const p=parseFloat(document.getElementById('peso').value);
+  const act=parseFloat(document.getElementById('act').value);
+  const cli=parseFloat(document.getElementById('clima').value);
+  if(isNaN(p)||p<30){document.getElementById('calc-error').classList.add('show');return;}
+  document.getElementById('calc-error').classList.remove('show');
+  const base=35; // ml/kg base OMS
+  const total=Math.round(p*(base+act*100+cli*100)/1000*10)/10; // litros
+  const vasos=Math.round(total/0.25); // 250ml glasses
+  document.getElementById('result-card').className='result-card normal';
+  document.getElementById('result-badge').className='result-badge normal';
+  document.getElementById('result-badge').textContent='💧 Tu hidratación diaria recomendada';
+  document.getElementById('result-value').textContent=total+'L';
+  document.getElementById('result-label').textContent='litros de agua al día';
+  document.getElementById('result-text').textContent=`Para tu peso de ${p} kg y tu nivel de actividad, necesitas aproximadamente ${total} litros de agua al día, equivalente a ${vasos} vasos de 250ml.`;
+  document.getElementById('metric-grid').innerHTML=`
+    <div class="metric-item"><div class="mi-label">Litros/día</div><div class="mi-value">${total}</div><div class="mi-unit">L</div></div>
+    <div class="metric-item"><div class="mi-label">Vasos (250ml)</div><div class="mi-value">${vasos}</div><div class="mi-unit">vasos/día</div></div>
+    <div class="metric-item"><div class="mi-label">ml por hora</div><div class="mi-value">${Math.round(total*1000/16)}</div><div class="mi-unit">ml (16h activo)</div></div>
+    <div class="metric-item"><div class="mi-label">Botella 500ml</div><div class="mi-value">${Math.round(total/0.5)}</div><div class="mi-unit">botellas/día</div></div>
+  `;
+  document.getElementById('result-section').style.display='block';
+  document.getElementById('result-section').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function copiarResultado(){const v=document.getElementById('result-value').textContent;navigator.clipboard.writeText(`Necesito ${v} de agua al día. Calculado en saludya.org`).then(()=>showToast());}
+</script>
+<script src="/cookie-banner.js"></script>
+</body></html>

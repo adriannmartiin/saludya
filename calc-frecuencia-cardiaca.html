@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Frecuencia Cardíaca y Zonas de Entrenamiento | SaludYa</title>
+  <meta name="description" content="Calcula tu frecuencia cardíaca máxima y zonas de entrenamiento gratis. Método Karvonen. Optimiza cardio para quemar grasa o mejorar resistencia.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://saludya.org/calc-frecuencia-cardiaca">
+  <meta property="og:title" content="Calculadora de Frecuencia Cardíaca y Zonas de Entrenamiento"><meta property="og:type" content="website">
+  <meta property="og:image" content="https://saludya.org/og-image.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="style.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header><div class="header-inner">
+  <a href="/" class="logo">Salud<span class="logo-dot">Ya</span>.</a>
+  <nav id="main-nav">
+      <a href="/calc-imc.html">⚖️ IMC</a>
+      <a href="/calc-calorias.html">🔥 Calorías</a>
+      <a href="/calc-peso-ideal.html">🎯 Peso ideal</a>
+      <a href="/calc-grasa-corporal.html">📊 Grasa</a>
+      <a href="/calc-frecuencia-cardiaca.html" class="active">❤️ FC</a>
+      <a href="/calc-macros.html">🥗 Macros</a>
+      <a href="/calc-1rm.html">🏋️ 1RM</a>
+      <a href="/calc-agua.html">💧 Agua</a>
+      <a href="/calc-actividad.html">🏃 Actividad</a>
+      <a href="/calc-deficit.html">📉 Déficit</a>
+      <a href="/calc-cintura-cadera.html">📐 Cintura</a>
+      <a href="/calc-sueno.html">😴 Sueño</a>
+    </nav>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</div></header>
+<main class="page-wrap">
+  <section class="page-hero">
+    <div class="breadcrumb"><a href="/">Inicio</a><span>›</span>Frecuencia Cardíaca</div>
+    <div class="tool-badge">❤️ Frecuencia Cardíaca</div>
+    <h1 class="tool-title">Calculadora de <em>Frecuencia Cardíaca</em></h1>
+    <p class="tool-subtitle">Calcula tu FC máxima y las 5 zonas de entrenamiento personalizadas para optimizar tus sesiones según tu objetivo.</p>
+  </section>
+  <div class="ad-slot"><!-- AdSense --></div>
+  <div class="calc-card">
+    
+<div class="form-row">
+  <div class="form-group"><label>Edad</label><div class="input-unit"><input type="number" id="edad" placeholder="30" min="15" max="90"><span class="unit-label">años</span></div></div>
+  <div class="form-group"><label>FC en reposo (opcional)</label><div class="input-unit"><input type="number" id="fc_reposo" placeholder="60" min="30" max="100"><span class="unit-label">ppm</span></div></div>
+</div>
+    <div class="calc-error" id="calc-error">Por favor, rellena todos los campos con valores válidos.</div>
+    <button class="calc-btn" onclick="calcular()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Calcular
+    </button>
+    <div class="result-section" id="result-section" style="display:none">
+      <div class="result-card" id="result-card">
+        <div class="result-badge" id="result-badge"></div>
+        <div class="result-value" id="result-value"></div>
+        <div class="result-label" id="result-label"></div>
+        <p class="result-text" id="result-text"></p>
+      </div>
+      <div class="metric-grid" id="metric-grid"></div>
+      <div class="share-result"><button class="btn-share copy" onclick="copiarResultado()">📋 Copiar resultado</button></div>
+    </div>
+    <p class="disclaimer">⚕️ Resultado orientativo. Consulta con tu médico o profesional de la salud para una valoración personalizada.</p>
+  </div>
+  <div class="ad-slot"><!-- AdSense --></div>
+  <section class="guide-section"><h2>Zonas de entrenamiento cardíaco</h2>
+<p>Entrenar en la zona correcta maximiza los beneficios según tu objetivo. La fórmula más simple para FC máxima es 220 − edad (Fox, 1971). La reserva cardíaca (Karvonen) refina las zonas teniendo en cuenta tu FC en reposo.</p>
+<h3>Las 5 zonas</h3>
+<p><strong>Zona 1 (50-60%):</strong> calentamiento y recuperación activa. <strong>Zona 2 (60-70%):</strong> la "zona de quema de grasa", aeróbico suave, puedes mantener una conversación. <strong>Zona 3 (70-80%):</strong> resistencia cardiovascular, mejora el VO2max. <strong>Zona 4 (80-90%):</strong> anaeróbico, mejora la potencia y el umbral láctico. <strong>Zona 5 (90-100%):</strong> esfuerzo máximo, solo sostenible segundos o pocos minutos.</p></section>
+  <section class="faq-section"><h2>Preguntas frecuentes</h2>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">¿En qué zona entreno para quemar grasa?<svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>La Zona 2 (60-70% FC máx) se llama "zona de quema de grasa" porque el cuerpo usa principalmente grasa como combustible. Pero ojo: también puedes quemar grasa en zonas más altas, y el total de calorías quemadas importa más que el porcentaje de la fuente.</p></div></div>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">¿Cómo mido mi FC en reposo?<svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Mídela nada más despertar, antes de levantarte de la cama. Coloca dos dedos en la muñeca o el cuello y cuenta los latidos durante 60 segundos. Un adulto sano tiene entre 60-100 ppm en reposo; los atletas bien entrenados pueden estar entre 40-60 ppm.</p></div></div>
+</section>
+  <section class="related-section"><h2>Calculadoras relacionadas</h2><div class="tools-grid">
+<a href="/calc-calorias.html" class="tool-card"><span class="tc-emoji">🔥</span><div class="tc-name">Calorías</div><div class="tc-desc">Tu gasto calórico diario.</div></a>
+<a href="/calc-actividad.html" class="tool-card"><span class="tc-emoji">🏃</span><div class="tc-name">Actividad</div><div class="tc-desc">Calorías quemadas por ejercicio.</div></a>
+</div></section>
+  <div class="ad-slot"><!-- AdSense --></div>
+</main>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div><div class="footer-logo">SaludYa.</div><p class="footer-desc">Calculadoras de salud gratuitas para hispanohablantes.</p></div>
+      <div class="footer-col"><h4>Calculadoras</h4>
+        <a href="/calc-imc.html">⚖️ IMC</a><a href="/calc-calorias.html">🔥 Calorías</a>
+        <a href="/calc-grasa-corporal.html">📊 Grasa</a><a href="/calc-macros.html">🥗 Macros</a>
+      </div>
+      <div class="footer-col"><h4>Legal</h4>
+        <a href="/privacidad.html">Privacidad</a><a href="/aviso-legal.html">Aviso legal</a>
+        <a href="/cookies.html">Cookies</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© SaludYa. Resultados orientativos, no sustituyen consejo médico.</span></div>
+  </div>
+</footer>
+<div class="toast" id="toast">¡Copiado!</div>
+<script>
+
+function showToast(m='¡Copiado!'){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+function toggleFaq(btn){const e=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',!e);btn.nextElementSibling.classList.toggle('open');}
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('main-nav').classList.toggle('open'));
+document.addEventListener('keydown',e=>{if(e.key==='Enter')calcular();});
+
+
+function calcular(){
+  const edad=parseFloat(document.getElementById('edad').value);
+  const fcr=parseFloat(document.getElementById('fc_reposo').value)||60;
+  if(isNaN(edad)||edad<15||edad>90){document.getElementById('calc-error').classList.add('show');return;}
+  document.getElementById('calc-error').classList.remove('show');
+  const fcmax=220-edad;
+  // Karvonen zones
+  const zones=[
+    {name:'Zona 1 — Calentamiento',pct1:50,pct2:60,color:'#3B82F6',desc:'Actividad muy ligera'},
+    {name:'Zona 2 — Quema grasa',pct1:60,pct2:70,color:'#10B981',desc:'Aeróbico suave, quema grasa'},
+    {name:'Zona 3 — Aeróbico',pct1:70,pct2:80,color:'#F59E0B',desc:'Resistencia cardiovascular'},
+    {name:'Zona 4 — Anaeróbico',pct1:80,pct2:90,color:'#EF4444',desc:'Alta intensidad'},
+    {name:'Zona 5 — Máximo',pct1:90,pct2:100,color:'#7C3AED',desc:'Esfuerzo máximo, sprints'},
+  ];
+  const card=document.getElementById('result-card');
+  card.className='result-card normal';
+  document.getElementById('result-badge').className='result-badge normal';
+  document.getElementById('result-badge').textContent='❤️ Tu frecuencia cardíaca máxima';
+  document.getElementById('result-value').textContent=fcmax;
+  document.getElementById('result-label').textContent='ppm FC máxima (220 − edad)';
+  document.getElementById('result-text').textContent=`Con ${edad} años, tu frecuencia cardíaca máxima estimada es ${fcmax} ppm. Usa las zonas de entrenamiento de abajo para optimizar tus sesiones según tu objetivo.`;
+  const zonesHTML=zones.map(z=>{
+    const v1=Math.round(fcr+(fcmax-fcr)*z.pct1/100);
+    const v2=Math.round(fcr+(fcmax-fcr)*z.pct2/100);
+    const w=(z.pct2-z.pct1)/50*100;
+    return `<div class="hr-zone">
+      <span class="hr-zone-name" style="color:${z.color}">${z.name.split('—')[0].trim()}</span>
+      <div class="hr-zone-bar-wrap"><div class="hr-zone-bar" style="width:${w}%;background:${z.color}"></div></div>
+      <span class="hr-zone-range">${v1}–${v2} ppm</span>
+    </div>`;
+  }).join('');
+  document.getElementById('metric-grid').innerHTML=`
+    <div class="metric-item"><div class="mi-label">FC máxima</div><div class="mi-value">${fcmax}</div><div class="mi-unit">ppm</div></div>
+    <div class="metric-item"><div class="mi-label">FC reposo</div><div class="mi-value">${fcr}</div><div class="mi-unit">ppm</div></div>
+    <div class="metric-item"><div class="mi-label">Reserva FC</div><div class="mi-value">${fcmax-fcr}</div><div class="mi-unit">ppm</div></div>
+    <div style="grid-column:1/-1"><p style="font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px">Zonas de entrenamiento (Karvonen)</p><div class="hr-zones">${zonesHTML}</div></div>
+  `;
+  document.getElementById('result-section').style.display='block';
+  document.getElementById('result-section').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function copiarResultado(){const v=document.getElementById('result-value').textContent;navigator.clipboard.writeText(`Mi FC máxima es ${v} ppm. Calculado en saludya.org`).then(()=>showToast());}
+
+</script>
+<script src="/cookie-banner.js"></script>
+</body></html>

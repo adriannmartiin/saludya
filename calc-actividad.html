@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Calorías Quemadas por Actividad | SaludYa</title><meta name="description" content="Calcula cuántas calorías quemas con cualquier actividad física. Más de 15 actividades: correr, nadar, bicicleta, gym. Resultado personalizado por peso y duración.">
+  <meta name="robots" content="index, follow"><link rel="canonical" href="https://saludya.org/calc-actividad">
+  <meta property="og:title" content="Calculadora de Calorías Quemadas por Actividad"><meta property="og:type" content="website">
+  <meta property="og:image" content="https://saludya.org/og-image.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="style.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header><div class="header-inner">
+  <a href="/" class="logo">Salud<span class="logo-dot">Ya</span>.</a>
+  <nav id="main-nav">
+      <a href="/calc-imc.html">⚖️ IMC</a><a href="/calc-calorias.html">🔥 Calorías</a>
+      <a href="/calc-peso-ideal.html">🎯 Peso ideal</a><a href="/calc-grasa-corporal.html">📊 Grasa</a>
+      <a href="/calc-frecuencia-cardiaca.html">❤️ FC</a><a href="/calc-macros.html">🥗 Macros</a>
+      <a href="/calc-1rm.html">🏋️ 1RM</a><a href="/calc-agua.html">💧 Agua</a>
+      <a href="/calc-actividad.html" class="active">🏃 Actividad</a><a href="/calc-deficit.html">📉 Déficit</a>
+      <a href="/calc-cintura-cadera.html">📐 Cintura</a><a href="/calc-sueno.html">😴 Sueño</a>
+    </nav>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</div></header>
+<main class="page-wrap">
+  <section class="page-hero">
+    <div class="breadcrumb"><a href="/">Inicio</a><span>›</span>Calorías Quemadas</div>
+    <div class="tool-badge">🏃 Calorías Quemadas</div>
+    <h1 class="tool-title">Calculadora de <em>Calorías Quemadas</em></h1>
+    <p class="tool-subtitle">Descubre cuántas calorías quemas con tu actividad física favorita, personalizado por tu peso y duración del ejercicio.</p>
+  </section>
+  <div class="ad-slot"><!-- AdSense --></div>
+  <div class="calc-card">
+    
+<div class="form-row">
+  <div class="form-group"><label>Tu peso</label><div class="input-unit"><input type="number" id="peso" placeholder="70" min="30" max="250"><span class="unit-label">kg</span></div></div>
+  <div class="form-group"><label>Duración</label><div class="input-unit"><input type="number" id="mins" placeholder="45" min="1" max="360"><span class="unit-label">min</span></div></div>
+</div>
+<div class="form-row single">
+  <div class="form-group"><label>Actividad</label>
+    <select id="actividad">
+      <optgroup label="Cardio">
+        <option value="7" selected>Correr (ritmo moderado ~8km/h)</option>
+        <option value="11">Correr rápido (~12km/h)</option>
+        <option value="3.5">Caminar (paso normal)</option>
+        <option value="5">Caminar rápido</option>
+        <option value="8">Ciclismo (moderado)</option>
+        <option value="12">Ciclismo (intenso)</option>
+        <option value="6">Natación (moderada)</option>
+        <option value="9.8">Natación (intensa)</option>
+        <option value="7.5">Fútbol</option>
+        <option value="6">Baloncesto</option>
+        <option value="9">Saltar a la comba</option>
+      </optgroup>
+      <optgroup label="Fuerza y gym">
+        <option value="5">Musculación (general)</option>
+        <option value="6">Musculación (intensa)</option>
+        <option value="5.5">CrossFit / HIIT</option>
+        <option value="4">Yoga</option>
+        <option value="3">Pilates</option>
+      </optgroup>
+      <optgroup label="Actividades cotidianas">
+        <option value="3.5">Trabajo de pie (dependienta, hostelería)</option>
+        <option value="3">Limpiar el hogar</option>
+        <option value="2.5">Sentado (oficina)</option>
+      </optgroup>
+    </select>
+  </div>
+</div>
+    <div class="calc-error" id="calc-error">Por favor, rellena todos los campos correctamente.</div>
+    <button class="calc-btn" onclick="calcular()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Calcular</button>
+    <div class="result-section" id="result-section" style="display:none">
+      <div class="result-card" id="result-card">
+        <div class="result-badge" id="result-badge"></div>
+        <div class="result-value" id="result-value"></div>
+        <div class="result-label" id="result-label"></div>
+        <p class="result-text" id="result-text"></p>
+      </div>
+      <div class="metric-grid" id="metric-grid"></div>
+      <div class="share-result"><button class="btn-share copy" onclick="copiarResultado()">📋 Copiar resultado</button></div>
+    </div>
+    <p class="disclaimer">⚕️ Resultado orientativo. Consulta con tu médico o profesional de la salud.</p>
+  </div>
+  <div class="ad-slot"><!-- AdSense --></div>
+  <section class="guide-section"><h2>¿Cómo se calculan las calorías quemadas por ejercicio?</h2>
+<p>La fórmula usa los <strong>MET</strong> (Metabolic Equivalent of Task), una medida de la intensidad de una actividad. Un MET = la energía gastada en reposo. Correr a ritmo moderado tiene un MET de ~7, lo que significa que quemas 7 veces más energía que en reposo.</p>
+<div class="formula-box">Calorías = MET × peso (kg) × tiempo (horas)</div>
+<p>Esta fórmula tiene un margen de error del 10-20% respecto a mediciones directas, ya que no considera la condición física individual ni variaciones metabólicas.</p></section>
+  <section class="faq-section"><h2>Preguntas frecuentes</h2>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">¿Cuántas calorías quema 1 hora corriendo?<svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Depende de tu peso y velocidad. Una persona de 70 kg corriendo a 8 km/h durante 1 hora quema aproximadamente 490 kcal. A mayor peso y velocidad, más calorías. Usa la calculadora de arriba para tu caso exacto.</p></div></div>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">¿Caminar quema suficientes calorías para perder peso?<svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Sí, si se hace de forma consistente. Caminar 30 minutos al día a paso ligero quema unas 150-200 kcal en una persona de 70 kg. Combinado con un déficit calórico moderado en la dieta, es perfectamente suficiente para perder peso de forma saludable y sostenible.</p></div></div>
+</section>
+  <section class="related-section"><h2>Calculadoras relacionadas</h2><div class="tools-grid">
+<a href="/calc-calorias.html" class="tool-card"><span class="tc-emoji">🔥</span><div class="tc-name">Calorías</div><div class="tc-desc">Tu gasto calórico total.</div></a>
+<a href="/calc-deficit.html" class="tool-card"><span class="tc-emoji">📉</span><div class="tc-name">Déficit</div><div class="tc-desc">Tiempo para tu objetivo.</div></a>
+</div></section>
+  <div class="ad-slot"><!-- AdSense --></div>
+</main>
+<footer><div class="footer-inner"><div class="footer-grid">
+  <div><div class="footer-logo">SaludYa.</div><p class="footer-desc">Calculadoras de salud gratuitas para hispanohablantes.</p></div>
+  <div class="footer-col"><h4>Calculadoras</h4><a href="/calc-imc.html">⚖️ IMC</a><a href="/calc-calorias.html">🔥 Calorías</a><a href="/calc-macros.html">🥗 Macros</a></div>
+  <div class="footer-col"><h4>Legal</h4><a href="/privacidad.html">Privacidad</a><a href="/aviso-legal.html">Aviso legal</a><a href="/cookies.html">Cookies</a></div>
+</div><div class="footer-bottom"><span>© SaludYa. Resultados orientativos.</span></div></div></footer>
+<div class="toast" id="toast">¡Copiado!</div>
+<script>
+function showToast(m='¡Copiado!'){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+function toggleFaq(btn){const e=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',!e);btn.nextElementSibling.classList.toggle('open');}
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('main-nav').classList.toggle('open'));
+document.addEventListener('keydown',e=>{if(e.key==='Enter')calcular();});
+
+function calcular(){
+  const p=parseFloat(document.getElementById('peso').value);
+  const m=parseFloat(document.getElementById('mins').value);
+  const met=parseFloat(document.getElementById('actividad').value);
+  if(isNaN(p)||isNaN(m)||m<1){document.getElementById('calc-error').classList.add('show');return;}
+  document.getElementById('calc-error').classList.remove('show');
+  const kcal=Math.round(met*p*m/60);
+  const h=Math.floor(m/60), min=m%60;
+  const durText=h>0?h+'h '+min+'min':min+'min';
+  document.getElementById('result-card').className='result-card normal';
+  document.getElementById('result-badge').className='result-badge normal';
+  document.getElementById('result-badge').textContent='🏃 Calorías quemadas';
+  document.getElementById('result-value').textContent=kcal;
+  document.getElementById('result-label').textContent='kcal en '+durText;
+  document.getElementById('result-text').textContent=`Con tu peso de ${p} kg y ${durText} de actividad, quemas aproximadamente ${kcal} kcal. Esto equivale a ${Math.round(kcal/7700*1000)/1000} kg de grasa (teórico).`;
+  document.getElementById('metric-grid').innerHTML=`
+    <div class="metric-item"><div class="mi-label">Calorías</div><div class="mi-value">${kcal}</div><div class="mi-unit">kcal</div></div>
+    <div class="metric-item"><div class="mi-label">MET</div><div class="mi-value">${met}</div><div class="mi-unit">intensidad</div></div>
+    <div class="metric-item"><div class="mi-label">kcal/min</div><div class="mi-value">${Math.round(kcal/m*10)/10}</div><div class="mi-unit">por minuto</div></div>
+    <div class="metric-item"><div class="mi-label">Equiv. grasa</div><div class="mi-value">${Math.round(kcal/7700*1000)/1000}</div><div class="mi-unit">kg (teórico)</div></div>
+  `;
+  document.getElementById('result-section').style.display='block';
+  document.getElementById('result-section').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function copiarResultado(){const v=document.getElementById('result-value').textContent;navigator.clipboard.writeText(`He quemado ${v} kcal. Calculado en saludya.org`).then(()=>showToast());}
+</script>
+<script src="/cookie-banner.js"></script>
+</body></html>

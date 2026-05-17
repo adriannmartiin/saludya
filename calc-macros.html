@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Macronutrientes | SaludYa</title>
+  <meta name="description" content="Calcula tus macronutrientes diarios gratis. Proteínas, carbohidratos y grasas personalizados según tu objetivo de pérdida de grasa, mantenimiento o ganancia muscular.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://saludya.org/calc-macros">
+  <meta property="og:title" content="Calculadora de Macronutrientes"><meta property="og:type" content="website">
+  <meta property="og:image" content="https://saludya.org/og-image.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="style.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header><div class="header-inner">
+  <a href="/" class="logo">Salud<span class="logo-dot">Ya</span>.</a>
+  <nav id="main-nav">
+      <a href="/calc-imc.html">⚖️ IMC</a><a href="/calc-calorias.html">🔥 Calorías</a>
+      <a href="/calc-peso-ideal.html">🎯 Peso ideal</a><a href="/calc-grasa-corporal.html">📊 Grasa</a>
+      <a href="/calc-frecuencia-cardiaca.html">❤️ FC</a><a href="/calc-macros.html" class="active">🥗 Macros</a>
+      <a href="/calc-1rm.html">🏋️ 1RM</a><a href="/calc-agua.html">💧 Agua</a>
+      <a href="/calc-actividad.html">🏃 Actividad</a><a href="/calc-deficit.html">📉 Déficit</a>
+      <a href="/calc-cintura-cadera.html">📐 Cintura</a><a href="/calc-sueno.html">😴 Sueño</a>
+    </nav>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</div></header>
+<main class="page-wrap">
+  <section class="page-hero">
+    <div class="breadcrumb"><a href="/">Inicio</a><span>›</span>Macronutrientes</div>
+    <div class="tool-badge">🥗 Macronutrientes</div>
+    <h1 class="tool-title">Calculadora de <em>Macronutrientes</em></h1>
+    <p class="tool-subtitle">Descubre exactamente cuántos gramos de proteína, carbohidratos y grasas necesitas cada día según tu objetivo: perder grasa, mantener el peso o ganar músculo.</p>
+  </section>
+  <div class="ad-slot"><!-- AdSense --></div>
+  <div class="calc-card">
+    
+<div class="form-row single" style="margin-bottom:16px">
+  <div class="form-group"><label>Sexo biológico</label>
+    <div class="gender-toggle">
+      <button class="gender-btn active" id="btn-h" onclick="setSexo('h')">♂ Hombre</button>
+      <button class="gender-btn" id="btn-m" onclick="setSexo('m')">♀ Mujer</button>
+    </div>
+  </div>
+</div>
+<div class="form-row triple">
+  <div class="form-group"><label>Peso</label><div class="input-unit"><input type="number" id="peso" placeholder="70" min="30" max="250"><span class="unit-label">kg</span></div></div>
+  <div class="form-group"><label>Altura</label><div class="input-unit"><input type="number" id="altura" placeholder="175" min="140" max="220"><span class="unit-label">cm</span></div></div>
+  <div class="form-group"><label>Edad</label><div class="input-unit"><input type="number" id="edad" placeholder="30" min="15" max="100"><span class="unit-label">años</span></div></div>
+</div>
+<div class="form-row">
+  <div class="form-group"><label>Actividad</label>
+    <select id="act">
+      <option value="1.2">Sedentario</option>
+      <option value="1.375">Ligero</option>
+      <option value="1.55" selected>Moderado</option>
+      <option value="1.725">Activo</option>
+      <option value="1.9">Muy activo</option>
+    </select>
+  </div>
+  <div class="form-group"><label>Objetivo</label>
+    <select id="objetivo">
+      <option value="deficit">Perder grasa (déficit −500)</option>
+      <option value="mantener" selected>Mantener peso</option>
+      <option value="superavit">Ganar músculo (+300)</option>
+    </select>
+  </div>
+</div>
+    <div class="calc-error" id="calc-error">Por favor, rellena todos los campos con valores válidos.</div>
+    <button class="calc-btn" onclick="calcular()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Calcular</button>
+    <div class="result-section" id="result-section" style="display:none">
+      <div class="result-card" id="result-card">
+        <div class="result-badge" id="result-badge"></div>
+        <div class="result-value" id="result-value"></div>
+        <div class="result-label" id="result-label"></div>
+        <p class="result-text" id="result-text"></p>
+      </div>
+      <div class="metric-grid" id="metric-grid"></div>
+      <div class="share-result"><button class="btn-share copy" onclick="copiarResultado()">📋 Copiar resultado</button></div>
+    </div>
+    <p class="disclaimer">⚕️ Resultado orientativo. Consulta con tu médico o profesional de la salud para una valoración personalizada.</p>
+  </div>
+  <div class="ad-slot"><!-- AdSense --></div>
+  <section class="guide-section"><h2>¿Qué son los macronutrientes?</h2>
+<p>Los macronutrientes (macros) son los tres grandes grupos de nutrientes que aportan energía: <strong>proteínas</strong> (4 kcal/g), <strong>carbohidratos</strong> (4 kcal/g) y <strong>grasas</strong> (9 kcal/g). Conocer tu distribución óptima de macros te permite estructurar tu alimentación para alcanzar tu objetivo más eficientemente.</p>
+<h3>Distribución recomendada</h3>
+<p><strong>Proteína:</strong> 1.6–2.2 g/kg para personas activas (esta calculadora usa 2 g/kg, adecuado para la mayoría). <strong>Grasas:</strong> 20-30% de las calorías totales, necesarias para hormonas y absorción de vitaminas. <strong>Carbohidratos:</strong> el resto de las calorías, combustible principal para el cerebro y el ejercicio.</p></section>
+  <section class="faq-section"><h2>Preguntas frecuentes</h2>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">¿Cuánta proteína necesito para ganar músculo?<svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>La evidencia científica actual apunta a que 1.6–2.2 g de proteína por kg de peso corporal al día es suficiente para maximizar la síntesis proteica muscular. Más de 2.2 g/kg no aporta beneficios adicionales en la mayoría de personas. Esta calculadora usa 2 g/kg como objetivo equilibrado.</p></div></div>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">¿Debo contar los macros en gramos o en calorías?<svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Ambos. Las apps como MyFitnessPal o Cronometer registran por defecto en gramos, que es más intuitivo para planificar comidas. Pero conocer el equivalente en calorías ayuda a entender el impacto total. 1 g proteína = 4 kcal, 1 g carbos = 4 kcal, 1 g grasa = 9 kcal.</p></div></div>
+</section>
+  <section class="related-section"><h2>Calculadoras relacionadas</h2><div class="tools-grid">
+<a href="/calc-calorias.html" class="tool-card"><span class="tc-emoji">🔥</span><div class="tc-name">Calorías</div><div class="tc-desc">Tu gasto calórico total.</div></a>
+<a href="/calc-deficit.html" class="tool-card"><span class="tc-emoji">📉</span><div class="tc-name">Déficit calórico</div><div class="tc-desc">Tiempo para tu objetivo.</div></a>
+</div></section>
+  <div class="ad-slot"><!-- AdSense --></div>
+</main>
+<footer><div class="footer-inner">
+  <div class="footer-grid">
+    <div><div class="footer-logo">SaludYa.</div><p class="footer-desc">Calculadoras de salud gratuitas para hispanohablantes.</p></div>
+    <div class="footer-col"><h4>Calculadoras</h4>
+      <a href="/calc-imc.html">⚖️ IMC</a><a href="/calc-calorias.html">🔥 Calorías</a>
+      <a href="/calc-macros.html">🥗 Macros</a><a href="/calc-deficit.html">📉 Déficit</a>
+    </div>
+    <div class="footer-col"><h4>Legal</h4>
+      <a href="/privacidad.html">Privacidad</a><a href="/aviso-legal.html">Aviso legal</a><a href="/cookies.html">Cookies</a>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© SaludYa. Resultados orientativos, no sustituyen consejo médico.</span></div>
+</div></footer>
+<div class="toast" id="toast">¡Copiado!</div>
+<script>
+function showToast(m='¡Copiado!'){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+function toggleFaq(btn){const e=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',!e);btn.nextElementSibling.classList.toggle('open');}
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('main-nav').classList.toggle('open'));
+document.addEventListener('keydown',e=>{if(e.key==='Enter')calcular();});
+
+let sexo='h';
+function setSexo(s){sexo=s;document.getElementById('btn-h').classList.toggle('active',s==='h');document.getElementById('btn-m').classList.toggle('active',s==='m');}
+function calcular(){
+  const p=parseFloat(document.getElementById('peso').value);
+  const h=parseFloat(document.getElementById('altura').value);
+  const e=parseFloat(document.getElementById('edad').value);
+  const act=parseFloat(document.getElementById('act').value);
+  const obj=document.getElementById('objetivo').value;
+  if(isNaN(p)||isNaN(h)||isNaN(e)){document.getElementById('calc-error').classList.add('show');return;}
+  document.getElementById('calc-error').classList.remove('show');
+  const bmr=sexo==='h'?10*p+6.25*h-5*e+5:10*p+6.25*h-5*e-161;
+  const tdee=Math.round(bmr*act);
+  const kcal=obj==='deficit'?tdee-500:obj==='superavit'?tdee+300:tdee;
+  const prot=Math.round(p*2);  // 2g/kg
+  const grasas=Math.round(kcal*0.25/9);
+  const carbos=Math.round((kcal-prot*4-grasas*9)/4);
+  const objText=obj==='deficit'?'Pérdida de grasa':obj==='superavit'?'Ganancia muscular':'Mantenimiento';
+  document.getElementById('result-card').className='result-card normal';
+  document.getElementById('result-badge').className='result-badge normal';
+  document.getElementById('result-badge').textContent=`🥗 ${objText}`;
+  document.getElementById('result-value').textContent=kcal;
+  document.getElementById('result-label').textContent='kcal/día objetivo';
+  document.getElementById('result-text').textContent=`Para tu objetivo de ${objText.toLowerCase()}, necesitas ${kcal} kcal/día distribuidas en ${prot}g de proteína, ${carbos}g de carbohidratos y ${grasas}g de grasas.`;
+  document.getElementById('metric-grid').innerHTML=`
+    <div class="metric-item"><div class="mi-label">Calorías</div><div class="mi-value">${kcal}</div><div class="mi-unit">kcal/día</div></div>
+    <div class="metric-item"><div class="mi-label">Proteína</div><div class="mi-value">${prot}g</div><div class="mi-unit">${prot*4} kcal · 30%</div></div>
+    <div class="metric-item"><div class="mi-label">Carbohidratos</div><div class="mi-value">${carbos}g</div><div class="mi-unit">${carbos*4} kcal · 45%</div></div>
+    <div class="metric-item"><div class="mi-label">Grasas</div><div class="mi-value">${grasas}g</div><div class="mi-unit">${grasas*9} kcal · 25%</div></div>
+  `;
+  document.getElementById('result-section').style.display='block';
+  document.getElementById('result-section').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function copiarResultado(){const v=document.getElementById('result-value').textContent;const t=document.getElementById('result-text').textContent;navigator.clipboard.writeText(t+' Calculado en saludya.org').then(()=>showToast());}
+</script>
+<script src="/cookie-banner.js"></script>
+</body></html>

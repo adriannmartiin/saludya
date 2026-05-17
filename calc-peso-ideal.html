@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Peso Ideal | SaludYa</title>
+  <meta name="description" content="Calcula tu peso ideal gratis según tu altura y complexión. Fórmulas Devine y Robinson. Resultado personalizado para hombre y mujer.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://saludya.org/calc-peso-ideal">
+  <meta property="og:title" content="Calculadora de Peso Ideal | SaludYa"><meta property="og:type" content="website">
+  <meta property="og:image" content="https://saludya.org/og-image.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="style.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+</head>
+<body>
+<header><div class="header-inner">
+  <a href="/" class="logo">Salud<span class="logo-dot">Ya</span>.</a>
+  <nav id="main-nav">
+      <a href="/calc-imc.html">⚖️ IMC</a>
+      <a href="/calc-calorias.html">🔥 Calorías</a>
+      <a href="/calc-peso-ideal.html" class="active">🎯 Peso ideal</a>
+      <a href="/calc-grasa-corporal.html">📊 Grasa</a>
+      <a href="/calc-frecuencia-cardiaca.html">❤️ FC</a>
+      <a href="/calc-macros.html">🥗 Macros</a>
+      <a href="/calc-1rm.html">🏋️ 1RM</a>
+      <a href="/calc-agua.html">💧 Agua</a>
+      <a href="/calc-actividad.html">🏃 Actividad</a>
+      <a href="/calc-deficit.html">📉 Déficit</a>
+      <a href="/calc-cintura-cadera.html">📐 Cintura</a>
+      <a href="/calc-sueno.html">😴 Sueño</a>
+    </nav>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</div></header>
+<main class="page-wrap">
+  <section class="page-hero">
+    <div class="breadcrumb"><a href="/">Inicio</a><span>›</span>Peso Ideal</div>
+    <div class="tool-badge">🎯 Peso Ideal</div>
+    <h1 class="tool-title">Calculadora de <em>Peso Ideal</em></h1>
+    <p class="tool-subtitle">Descubre tu peso ideal según tu altura, sexo y complexión corporal usando las fórmulas médicas más establecidas.</p>
+  </section>
+  <div class="ad-slot"><!-- AdSense --></div>
+  <div class="calc-card">
+    
+<div class="form-row single" style="margin-bottom:16px">
+  <div class="form-group"><label>Sexo biológico</label>
+    <div class="gender-toggle">
+      <button class="gender-btn active" id="btn-h" onclick="setSexo('h')">♂ Hombre</button>
+      <button class="gender-btn" id="btn-m" onclick="setSexo('m')">♀ Mujer</button>
+    </div>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group"><label>Altura</label><div class="input-unit"><input type="number" id="altura" placeholder="175" min="140" max="220"><span class="unit-label">cm</span></div></div>
+  <div class="form-group"><label>Complexión</label>
+    <select id="complexion">
+      <option value="small">Pequeña (muñeca &lt;16cm)</option>
+      <option value="medium" selected>Mediana (muñeca 16–19cm)</option>
+      <option value="large">Grande (muñeca &gt;19cm)</option>
+    </select>
+  </div>
+</div>
+    <div class="calc-error" id="calc-error">Por favor, rellena todos los campos con valores válidos.</div>
+    <button class="calc-btn" onclick="calcular()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Calcular
+    </button>
+    <div class="result-section" id="result-section" style="display:none">
+      <div class="result-card" id="result-card">
+        <div class="result-badge" id="result-badge"></div>
+        <div class="result-value" id="result-value"></div>
+        <div class="result-label" id="result-label"></div>
+        <p class="result-text" id="result-text"></p>
+      </div>
+      <div class="metric-grid" id="metric-grid"></div>
+      <div class="share-result">
+        <button class="btn-share copy" onclick="copiarResultado()">📋 Copiar resultado</button>
+      </div>
+    </div>
+    <p class="disclaimer">⚕️ Resultado orientativo. Consulta con tu médico o profesional de la salud para una valoración personalizada.</p>
+  </div>
+  <div class="ad-slot"><!-- AdSense --></div>
+  <section class="guide-section"><h2>¿Cómo se calcula el peso ideal?</h2>
+<p>No existe un único "peso ideal" — distintas fórmulas médicas dan rangos ligeramente diferentes. Las más usadas son Devine (1974) y Robinson (1983), ambas basadas en la altura en pulgadas por encima de 5 pies (152 cm).</p>
+<h3>Fórmulas utilizadas</h3>
+<div class="formula-box">Devine — Hombre: 50 + 2.3 × (altura_pulgadas − 60)<br>Devine — Mujer: 45.5 + 2.3 × (altura_pulgadas − 60)<br>Robinson — Hombre: 52 + 1.9 × (altura_pulgadas − 60)<br>Robinson — Mujer: 49 + 1.7 × (altura_pulgadas − 60)</div>
+<p>La complexión corporal (tamaño del esqueleto) se estima midiendo el perímetro de la muñeca: menos de 16 cm es complexión pequeña, 16-19 cm mediana, más de 19 cm grande. Una complexión grande puede añadir 2-4 kg al peso ideal.</p></section>
+  <section class="faq-section"><h2>Preguntas frecuentes</h2>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">¿Es lo mismo el peso ideal que el IMC normal?<svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Son enfoques relacionados pero distintos. El IMC normal (18.5–24.9) da un <strong>rango</strong> de pesos saludables para una altura. Las fórmulas de peso ideal dan un número más específico que a menudo cae en el tercio inferior del rango IMC normal. Ambos son orientativos.</p></div></div>
+<div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">¿Debo obsesionarme con llegar a mi "peso ideal"?<svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>No. Estas fórmulas son herramientas estadísticas, no diagnósticos. Lo más importante es mantener hábitos saludables, una composición corporal razonable, y bienestar general. Muchas personas se sienten y están perfectamente sanas con un peso 5-8% por encima de su "ideal" calculado.</p></div></div>
+</section>
+  <section class="related-section"><h2>Calculadoras relacionadas</h2><div class="tools-grid">
+<a href="/calc-imc.html" class="tool-card"><span class="tc-emoji">⚖️</span><div class="tc-name">IMC</div><div class="tc-desc">Tu índice de masa corporal.</div></a>
+<a href="/calc-deficit.html" class="tool-card"><span class="tc-emoji">📉</span><div class="tc-name">Déficit calórico</div><div class="tc-desc">Tiempo para tu objetivo.</div></a>
+</div></section>
+  <div class="ad-slot"><!-- AdSense --></div>
+</main>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div><div class="footer-logo">SaludYa.</div><p class="footer-desc">Calculadoras de salud gratuitas para hispanohablantes.</p></div>
+      <div class="footer-col"><h4>Calculadoras</h4>
+        <a href="/calc-imc.html">⚖️ IMC</a><a href="/calc-calorias.html">🔥 Calorías</a>
+        <a href="/calc-peso-ideal.html">🎯 Peso ideal</a><a href="/calc-grasa-corporal.html">📊 Grasa</a>
+        <a href="/calc-frecuencia-cardiaca.html">❤️ FC</a><a href="/calc-macros.html">🥗 Macros</a>
+      </div>
+      <div class="footer-col"><h4>Legal</h4>
+        <a href="/privacidad.html">Privacidad</a><a href="/aviso-legal.html">Aviso legal</a>
+        <a href="/cookies.html">Cookies</a><a href="/sobre.html">Sobre SaludYa</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© SaludYa. Resultados orientativos, no sustituyen consejo médico.</span></div>
+  </div>
+</footer>
+<div class="toast" id="toast">¡Copiado!</div>
+<script>
+
+function showToast(m='¡Copiado!'){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+function toggleFaq(btn){const e=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',!e);btn.nextElementSibling.classList.toggle('open');}
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('main-nav').classList.toggle('open'));
+document.addEventListener('keydown',e=>{if(e.key==='Enter')calcular();});
+
+
+let sexo='h';
+function setSexo(s){sexo=s;document.getElementById('btn-h').classList.toggle('active',s==='h');document.getElementById('btn-m').classList.toggle('active',s==='m');}
+function calcular(){
+  const altura=parseFloat(document.getElementById('altura').value);
+  const comp=document.getElementById('complexion').value;
+  if(isNaN(altura)||altura<140||altura>220){document.getElementById('calc-error').classList.add('show');return;}
+  document.getElementById('calc-error').classList.remove('show');
+  const alturaIn = altura / 2.54;
+  // Devine formula
+  let devine = sexo==='h' ? 50 + 2.3*(alturaIn-60) : 45.5 + 2.3*(alturaIn-60);
+  // Robinson formula
+  let robinson = sexo==='h' ? 52 + 1.9*(alturaIn-60) : 49 + 1.7*(alturaIn-60);
+  // Adjust for frame
+  const adj = comp==='small' ? -3 : comp==='large' ? 3 : 0;
+  devine = Math.round((devine + adj)*10)/10;
+  robinson = Math.round((robinson + adj)*10)/10;
+  const medio = Math.round((devine+robinson)/2*10)/10;
+  const card=document.getElementById('result-card');
+  card.className='result-card normal';
+  document.getElementById('result-badge').className='result-badge normal';
+  document.getElementById('result-badge').textContent='🎯 Peso ideal estimado';
+  document.getElementById('result-value').textContent=medio;
+  document.getElementById('result-label').textContent='kg (peso ideal)';
+  document.getElementById('result-text').textContent=`Para tu altura de ${altura} cm y complexión ${comp==='small'?'pequeña':comp==='large'?'grande':'mediana'}, tu peso ideal estimado está entre ${Math.min(devine,robinson)} y ${Math.max(devine,robinson)} kg, con una media de ${medio} kg.`;
+  document.getElementById('metric-grid').innerHTML=`
+    <div class="metric-item"><div class="mi-label">Fórmula Devine</div><div class="mi-value">${devine}</div><div class="mi-unit">kg</div></div>
+    <div class="metric-item"><div class="mi-label">Fórmula Robinson</div><div class="mi-value">${robinson}</div><div class="mi-unit">kg</div></div>
+    <div class="metric-item"><div class="mi-label">Media</div><div class="mi-value">${medio}</div><div class="mi-unit">kg</div></div>
+    <div class="metric-item"><div class="mi-label">Rango IMC normal</div><div class="mi-value">${Math.round(18.5*(altura/100)**2)}–${Math.round(24.9*(altura/100)**2)}</div><div class="mi-unit">kg para ${altura}cm</div></div>
+  `;
+  document.getElementById('result-section').style.display='block';
+  document.getElementById('result-section').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function copiarResultado(){const v=document.getElementById('result-value').textContent;navigator.clipboard.writeText(`Mi peso ideal es ${v} kg. Calculado en saludya.org`).then(()=>showToast());}
+
+</script>
+<script src="/cookie-banner.js"></script>
+</body></html>
